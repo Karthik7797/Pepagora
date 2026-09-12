@@ -40,18 +40,15 @@
   border-radius: 50%;
   transition: border-color $duration $ease;
 
-  // Checked reads as one bold mark rather than a ring with a separate dot.
-  // The fill is sized against the border box and overlaps the border, so
-  // there is no white gap between the two — as in the design.
+  // Checked is one bold mark: a large centre dot and a thick outer ring,
+  // separated by a thin line. Masking a ring out of a solid circle keeps the
+  // dot and the ring the same colour and concentric by construction.
   &::after {
     content: '';
     position: absolute;
-    inset: -1px;
+    inset: 0;
     border-radius: 50%;
     background: $ink-1000;
-    // A thin ring is punched out of the solid circle, leaving a large centre
-    // dot and a thick outer ring — the heavy mark the design uses, rather
-    // than a hairline ring around a small dot.
     mask:
       radial-gradient(
         circle at center,
@@ -63,8 +60,11 @@
     transition: transform $duration $ease;
   }
 
+  // The unchecked ring is drawn as a border, so it has to be removed rather
+  // than hidden — a transparent border still offsets `::after` from the edge
+  // and leaves a stray outer ring.
   .input:checked ~ .label & {
-    border-color: transparent;
+    border: 0;
 
     &::after {
       transform: scale(1);
