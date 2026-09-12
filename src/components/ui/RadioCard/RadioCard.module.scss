@@ -40,22 +40,16 @@
   border-radius: 50%;
   transition: border-color $duration $ease;
 
-  // Checked is one bold mark: a large centre dot and a thick outer ring,
-  // separated by a thin line. Masking a ring out of a solid circle keeps the
-  // dot and the ring the same colour and concentric by construction.
+  // The centre dot. A masked gradient would render the ring edges without
+  // antialiasing and come out visibly jagged at this size, so the mark is
+  // built from a real circle plus a spread box-shadow instead — both of
+  // which the browser antialiases.
   &::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 4.5px;
     border-radius: 50%;
-    background: $ink-1000;
-    mask:
-      radial-gradient(
-        circle at center,
-        #000 0 5px,
-        transparent 5px 6.5px,
-        #000 6.5px
-      );
+    background: transparent;
     transform: scale(0);
     transition: transform $duration $ease;
   }
@@ -65,8 +59,13 @@
   // and leaves a stray outer ring.
   .input:checked ~ .label & {
     border: 0;
+    // Thick ring: the element itself is the white gap, the shadow spreads the
+    // black ring outward from it to the full 18px.
+    background: $white;
+    box-shadow: inset 0 0 0 3px $ink-1000;
 
     &::after {
+      background: $ink-1000;
       transform: scale(1);
     }
   }
