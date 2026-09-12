@@ -32,42 +32,23 @@
 }
 
 .indicator {
-  position: relative;
   width: 18px;
   height: 18px;
   flex-shrink: 0;
   border: 1.5px solid $color-border-strong;
   border-radius: 50%;
-  transition: border-color $duration $ease;
+  background: $white;
+  transition:
+    border-color $duration $ease,
+    border-width $duration $ease;
 
-  // The centre dot. A masked gradient would render the ring edges without
-  // antialiasing and come out visibly jagged at this size, so the mark is
-  // built from a real circle plus a spread box-shadow instead — both of
-  // which the browser antialiases.
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 3px;
-    border-radius: 50%;
-    background: transparent;
-    transform: scale(0);
-    transition: transform $duration $ease;
-  }
-
-  // The unchecked ring is drawn as a border, so it has to be removed rather
-  // than hidden — a transparent border still offsets `::after` from the edge
-  // and leaves a stray outer ring.
+  // Checked is a thick black ring around a white centre — no inner dot. Drawn
+  // as a border rather than a masked gradient so the browser antialiases both
+  // edges of the ring; a hard-stop gradient mask renders visibly jagged at
+  // this size.
   .input:checked ~ .label & {
-    border: 0;
-    // Thick ring: the element itself is the white gap, the shadow spreads the
-    // black ring outward from it to the full 18px.
-    background: $white;
-    box-shadow: inset 0 0 0 2px $ink-1000;
-
-    &::after {
-      background: $ink-1000;
-      transform: scale(1);
-    }
+    border-width: 5px;
+    border-color: $ink-1000;
   }
 }
 
