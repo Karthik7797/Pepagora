@@ -1,0 +1,52 @@
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.container {
+  @include site-container;
+}
+
+.grid {
+  display: grid;
+  // Two across at 375px, matching the mobile design.
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-12;
+
+  @include cq-up('sm') {
+    gap: $sp-32;
+  }
+
+  @include cq-up('lg') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 132px;
+  padding: $sp-20;
+  background: $grey-150;
+  border-radius: $radius-lg;
+  transition: background-color $duration $ease;
+
+  &:hover {
+    background: $green-100;
+  }
+}
+
+// The exported art carries its own green, so no colour is set here.
+.icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.name {
+  font-size: $fs-13;
+  font-weight: $fw-semibold;
+  color: $ink-1000;
+}

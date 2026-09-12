@@ -1,0 +1,5 @@
+// Single entry point for the token layer. `next.config.ts` injects this into
+// every .scss file, so modules can use $tokens and mixins without importing.
+@forward 'tokens';
+@forward 'breakpoints';
+@forward 'mixins';

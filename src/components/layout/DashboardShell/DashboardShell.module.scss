@@ -1,0 +1,39 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+// Doubled to clear the .menuTrigger.menuTrigger specificity below.
+:global(body[data-preview]) .menuTrigger.menuTrigger.menuTrigger {
+  display: none;
+}
+
+.menuTrigger.menuTrigger {
+  position: fixed;
+  left: $sp-12;
+  bottom: calc(#{$sp-16} + 72px);
+  z-index: $z-overlay;
+  background: $ink-1000;
+  color: $white;
+  box-shadow: $shadow-lg;
+
+  @include up('md') {
+    display: none;
+  }
+
+  &:hover {
+    background: $ink-900;
+  }
+}

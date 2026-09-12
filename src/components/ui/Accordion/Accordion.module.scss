@@ -1,0 +1,55 @@
+.item {
+  border-bottom: 1px solid $color-border;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $sp-12;
+  padding: $sp-16 $sp-20;
+}
+
+.trigger {
+  @include button-reset;
+  @include focus-ring($offset: -2px);
+  flex: 1;
+  text-align: left;
+  font-size: $fs-15;
+  font-weight: $fw-semibold;
+  color: $color-text;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $sp-12;
+}
+
+.divider {
+  width: 1px;
+  height: 18px;
+  background: $color-border;
+}
+
+.chevron {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: 1px solid $color-border-strong;
+  border-radius: 50%;
+  color: $color-text-muted;
+  transition: transform $duration $ease;
+
+  &[data-open='true'] {
+    transform: rotate(180deg);
+  }
+}
+
+.panel {
+  padding: 0 $sp-20 $sp-20;
+}

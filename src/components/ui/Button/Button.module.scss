@@ -1,0 +1,149 @@
+.button {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-10;
+  border-radius: $radius-md;
+  font-weight: $fw-medium;
+  white-space: nowrap;
+  // A button in a `minmax(0, 1fr)` track would otherwise hold its content's
+  // width and spill out of the track — the label clipped at both edges. These
+  // let it shrink: `min-width: 0` frees it from its intrinsic minimum, and the
+  // label ellipsises rather than overflowing once the box is smaller than the
+  // text.
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  transition:
+    background-color $duration $ease,
+    background-image $duration $ease,
+    border-color $duration $ease,
+    box-shadow $duration $ease,
+    opacity $duration $ease;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.label {
+  @include truncate;
+  min-width: 0;
+}
+
+.pill {
+  border-radius: $radius-pill;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+// Sizes — side padding runs a little under half the height, matching the
+// breathing room the design gives its labels.
+// Sizes — side padding runs a little under half the height, matching the
+// breathing room the design gives its labels.
+.sm {
+  height: 32px;
+  padding-inline: $sp-16;
+  font-size: $fs-12;
+}
+
+.md {
+  height: 38px;
+  padding-inline: $sp-20;
+  font-size: $fs-13;
+}
+
+.lg {
+  height: 44px;
+  padding-inline: $sp-24;
+  font-size: $fs-14;
+}
+
+
+// Variants
+.primary {
+  background: $color-primary;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-hover;
+  }
+}
+
+.dark {
+  background: $ink-900;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background: $ink-800;
+  }
+}
+
+// Two-stop linear gradient from the export: #181818 at 80% opacity running
+// into #000000. The hover simply lifts the light stop to full strength.
+.gradient {
+  background-image: linear-gradient(
+    to right,
+    rgba(24, 24, 24, 0.8) 0%,
+    #000000 100%
+  );
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background-image: linear-gradient(to right, #181818 0%, #000000 100%);
+  }
+}
+
+.black {
+  background: #000000;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background: #1a1a1a;
+  }
+}
+
+.green {
+  background: $green-500;
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background: $green-600;
+  }
+}
+
+.outline {
+  background: $white;
+  color: $color-text;
+  border: 1px solid $color-border-strong;
+
+  &:hover:not(:disabled) {
+    border-color: $grey-500;
+    background: $grey-50;
+  }
+}
+
+.subtle {
+  background: $grey-200;
+  color: $color-text;
+  // Export: X 0, Y 0.65, blur 0.65 at 25% — 1px each once scaled to 1920.
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+
+  &:hover:not(:disabled) {
+    background: $grey-300;
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: $color-text;
+
+  &:hover:not(:disabled) {
+    background: $grey-200;
+  }
+}

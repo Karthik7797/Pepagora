@@ -1,0 +1,48 @@
+.section {
+  background: linear-gradient(90deg, #242f3a 0%, #35664c 58%, #4b9b68 100%);
+  color: $white;
+}
+
+// The export draws the band 243px tall at 1920 — roughly 163px at canvas
+// width. The text block is short, so that height comes from generous padding
+// above and below rather than from the content.
+.container {
+  @include site-container;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $sp-20;
+  padding-block: $sp-32;
+
+  @include cq-up('md') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $sp-32;
+    padding-block: $sp-40;
+  }
+
+  @include cq-up('lg') {
+    padding-block: $sp-48;
+  }
+
+  @include cq-up('xxl') {
+    min-height: 243px; // CTA band height in the export
+  }
+}
+
+// cqw, not vw: this sits inside the canvas, so viewport units would size it
+// against space the section does not have.
+.title {
+  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-weight: $fw-semibold;
+  line-height: 1.19;
+  letter-spacing: -0.027em;
+  margin-bottom: $sp-8;
+}
+
+.subtitle {
+  font-size: clamp(#{$fs-12}, 0.95cqw, #{$fs-14});
+  line-height: 1.56;
+  color: rgba(255, 255, 255, 0.82);
+}

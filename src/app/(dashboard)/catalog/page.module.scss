@@ -1,0 +1,105 @@
+.wrapper {
+  padding: $sp-20 $sp-16 $sp-32;
+
+  @include up('xl') {
+    padding: $sp-24 $sp-24 $sp-40;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sp-16;
+  margin-bottom: $sp-20;
+}
+
+.title {
+  font-size: $fs-18;
+  font-weight: $fw-semibold;
+}
+
+.actions {
+  display: flex;
+  gap: $sp-12;
+}
+
+.layout {
+  display: grid;
+  gap: $sp-20;
+  align-items: start;
+
+  @include up('lg') {
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+
+  @include up('xxl') {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+}
+
+.preview {
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $white;
+  box-shadow: $shadow-sm;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-16;
+
+  @include up('lg') {
+    position: sticky;
+    top: calc(var(--header-h) + #{$sp-20});
+  }
+}
+
+.card {
+  padding: $sp-20;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $white;
+  text-align: center;
+}
+
+.illustration {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto $sp-16;
+}
+
+.cardTitle {
+  font-size: $fs-14;
+  font-weight: $fw-semibold;
+  margin-bottom: $sp-8;
+}
+
+.cardBody {
+  font-size: $fs-12;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+}
+
+.cardHeading {
+  font-size: $fs-15;
+  font-weight: $fw-semibold;
+  text-align: left;
+  margin-bottom: $sp-16;
+}
+
+.planName {
+  font-size: $fs-13;
+  font-weight: $fw-semibold;
+  text-align: left;
+}
+
+.planMeta {
+  font-size: $fs-12;
+  color: $color-text-muted;
+  text-align: left;
+  margin-bottom: $sp-16;
+}

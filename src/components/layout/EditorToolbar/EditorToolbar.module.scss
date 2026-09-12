@@ -1,0 +1,112 @@
+// Sticks directly under the marketplace header so the editor controls stay
+// reachable while the canvas scrolls; the panel pins to the combined height.
+.toolbar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: $z-sticky;
+  display: flex;
+  align-items: center;
+  gap: $sp-16;
+  height: $toolbar-height;
+  padding-inline: $sp-16;
+  background: $white;
+  border-bottom: 1px solid $color-border;
+
+  @include up('xl') {
+    padding-inline: $sp-20;
+  }
+}
+
+.exit {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-8;
+  flex-shrink: 0;
+  font-size: $fs-13;
+  color: $color-text;
+  transition: color $duration $ease;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: $color-border;
+
+  @include down('md') {
+    display: none;
+  }
+}
+
+.pageSelect {
+  display: flex;
+  align-items: center;
+  gap: $sp-10;
+  font-size: $fs-13;
+  color: $color-text-muted;
+
+  @include down('md') {
+    display: none;
+  }
+}
+
+.selectControl {
+  width: 132px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $sp-4;
+  margin-left: auto;
+
+  @include up('lg') {
+    gap: $sp-8;
+  }
+}
+
+.mode {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-8;
+  height: 34px;
+  padding-inline: $sp-12;
+  border-radius: $radius-pill;
+  font-size: $fs-13;
+  color: $color-text;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: background-color $duration $ease;
+
+  &:hover {
+    background: $grey-200;
+  }
+
+  &[aria-pressed='true'] {
+    background: $grey-200;
+    font-weight: $fw-medium;
+  }
+
+  // Leaving preview is the only way back to the panel, so it reads as the
+  // active control rather than another grey pill.
+  &.previewing[aria-pressed='true'] {
+    background: $ink-1000;
+    color: $white;
+  }
+
+  @include down('md') {
+    span {
+      @include visually-hidden;
+    }
+  }
+}
+
+.modeIcon {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+}

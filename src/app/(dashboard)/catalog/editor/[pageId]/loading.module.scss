@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  gap: $sp-20;
+  padding: $sp-20;
+  min-height: calc(100vh - var(--header-h) - #{$toolbar-height});
+}
+
+.canvas,
+.panel {
+  border-radius: $radius-md;
+  background: linear-gradient(
+    90deg,
+    $grey-200 25%,
+    $grey-100 50%,
+    $grey-200 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.canvas {
+  flex: 1;
+}
+
+.panel {
+  width: $panel-width;
+  flex-shrink: 0;
+
+  @include down('lg') {
+    display: none;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

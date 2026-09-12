@@ -1,0 +1,56 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-6;
+}
+
+.label {
+  font-size: $fs-12;
+  font-weight: $fw-semibold;
+  color: $color-text;
+}
+
+.control {
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: $sp-10 $sp-12 $sp-24;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $white;
+  font-size: $fs-13;
+  line-height: $lh-snug;
+  color: $color-field-text;
+  resize: vertical;
+  transition: border-color $duration $ease;
+
+  &::placeholder {
+    color: $color-field-text;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: $color-border-strong;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $ink-900;
+  }
+}
+
+.counter {
+  position: absolute;
+  right: $sp-12;
+  bottom: $sp-10;
+  font-size: $fs-11;
+  color: $color-text-subtle;
+  pointer-events: none;
+}
+
+.error {
+  font-size: $fs-11;
+  color: $color-primary;
+}

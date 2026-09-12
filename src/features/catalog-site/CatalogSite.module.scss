@@ -1,0 +1,7 @@
+// Declaring the site as a named container lets every section size itself
+// against the rendered width rather than the browser window. In the editor
+// that width is the canvas; standalone it is the viewport.
+.site {
+  container-type: inline-size;
+  container-name: site;
+}

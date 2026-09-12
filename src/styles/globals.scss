@@ -1,0 +1,14 @@
+@use 'abstracts' as *;
+@use 'base/reset';
+
+body {
+  font-family: $font-sans;
+  font-size: $fs-14;
+  color: $color-text;
+  background: $color-app-bg;
+}
+
+::selection {
+  background: $red-100;
+  color: $ink-1000;
+}

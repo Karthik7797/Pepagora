@@ -1,0 +1,114 @@
+.section {
+  @include section-padding;
+  background: $grey-150;
+}
+
+.container {
+  @include site-container;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-32;
+  margin-bottom: $sp-40;
+
+  @include cq-up('lg') {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: $sp-48;
+  }
+}
+
+.eyebrow {
+  font-size: $fs-12;
+  color: $color-text;
+  margin-bottom: $sp-8;
+}
+
+.title {
+  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-weight: $fw-bold;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  max-width: 16ch;
+  margin-bottom: $sp-20;
+}
+
+.body {
+  font-size: $fs-14;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  max-width: 68ch;
+  margin-bottom: $sp-24;
+}
+
+.badges {
+  display: flex;
+  gap: $sp-16;
+  flex-shrink: 0;
+}
+
+.badge {
+  width: 104px;
+  height: 104px;
+
+  @include cq-up('xl') {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+.stats {
+  display: grid;
+  // Two columns from the smallest width, as the mobile design shows.
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: $white;
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  @include cq-up('lg') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.stat {
+  display: flex;
+  align-items: flex-start;
+  gap: $sp-12;
+  padding: $sp-20 $sp-24;
+  border-bottom: 1px solid $grey-200;
+
+  @include cq-up('lg') {
+    // Only the first row keeps its bottom border.
+    &:nth-last-child(-n + 4) {
+      border-bottom: 0;
+    }
+  }
+
+  @include cq-down('lg') {
+    &:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+  }
+}
+
+.statIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.statLabel {
+  display: block;
+  font-size: $fs-12;
+  color: $color-text-muted;
+  margin-bottom: $sp-4;
+}
+
+.statValue {
+  font-size: $fs-14;
+  font-weight: $fw-medium;
+  color: $ink-1000;
+}

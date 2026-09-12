@@ -1,0 +1,20 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.image {
+  // Scales with the header rather than a fixed pixel width, so the wordmark
+  // stays proportional across breakpoints.
+  width: auto;
+  height: 28px;
+
+  @include up('md') {
+    height: 32px;
+  }
+
+  @include up('xl') {
+    height: 36px; // Isolation_Mode is 184.6 x 35.9 in the export
+  }
+}

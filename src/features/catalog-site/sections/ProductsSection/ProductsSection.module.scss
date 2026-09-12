@@ -1,0 +1,56 @@
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.container {
+  @include site-container;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $sp-6;
+  margin-bottom: $sp-32;
+
+  // Horizontal scroll on narrow canvases rather than a tall wrapped block.
+  @include cq-down('md') {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-width: 0;
+    overflow-x: auto;
+    padding-bottom: $sp-8;
+    @include custom-scrollbar;
+  }
+}
+
+.grid {
+  display: grid;
+  // The mobile design keeps two cards across at 375px rather than stacking;
+  // the card narrows to ~160px instead.
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-24 $sp-16;
+
+  @include cq-up('sm') {
+    gap: $sp-48 $sp-32;
+  }
+
+  @include cq-up('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  // The design draws three cards across its 1632px canvas, which leaves each
+  // one ~522px wide. Past that the card (and its 1:1 image) just scales up, so
+  // a wider canvas takes a fourth column instead of a bigger card. Stopping at
+  // four keeps the row filled — a fifth would strand one card of six alone.
+  @include cq-up('xl') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: $sp-40;
+}

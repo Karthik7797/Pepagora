@@ -1,0 +1,28 @@
+// The segmented switch reads as a control, not a full-width band — inset from
+// the rows below it, with enough room under it that the first divider is not
+// crowding the tab border.
+.tabs {
+  margin-block: $sp-4 $sp-20;
+}
+
+.overlayTitle {
+  font-size: $fs-13;
+  font-weight: $fw-semibold;
+  margin-bottom: $sp-4;
+}
+
+.overlayHint {
+  font-size: $fs-12;
+  color: $color-text-muted;
+  margin-bottom: $sp-16;
+}
+
+// Banner stills shown in the Banner Overlay radio group. `cover` fills the
+// 62px preview box at whatever width the panel gives it, and the box itself
+// clips the overflow.
+.swatch {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

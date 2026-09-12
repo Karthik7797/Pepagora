@@ -1,0 +1,70 @@
+.section {
+  @include section-padding;
+  background: $grey-50; // #fafafa in the export
+}
+
+.container {
+  @include site-container;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-32;
+
+  @include cq-up('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include cq-up('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: $sp-24;
+  background: $white;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+// The exported glyph carries its own green, so no colouring is applied here.
+.quoteMark {
+  display: block;
+  width: 26px;
+  height: auto;
+  margin-bottom: $sp-16;
+}
+
+.quote {
+  font-size: $fs-13;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  margin-bottom: $sp-24;
+  flex: 1;
+}
+
+.author {
+  padding-top: $sp-16;
+  border-top: 1px solid $color-border;
+}
+
+.name {
+  font-size: $fs-13;
+  font-weight: $fw-semibold;
+  color: $ink-1000;
+}
+
+.company {
+  font-size: $fs-12;
+  color: $color-text-muted;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: $sp-24;
+  margin-top: $sp-32;
+}

@@ -1,0 +1,77 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-16;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-12;
+}
+
+.divider {
+  height: 1px;
+  background: $color-border;
+  margin-block: $sp-4;
+}
+
+.linkRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addLink {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-8;
+  font-size: $fs-13;
+  font-weight: $fw-medium;
+  color: $color-text;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+// Padded on both sides of the divider so the row title sits centred in its
+// band rather than tight against the line above it.
+.collapsible {
+  border-top: 1px solid $color-border;
+  padding-block: $sp-12;
+}
+
+.collapsibleTrigger {
+  @include button-reset;
+  @include focus-ring($offset: -2px);
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+  width: 100%;
+  font-size: $fs-14;
+  font-weight: $fw-semibold;
+  color: $color-text;
+}
+
+.chevron {
+  transition: transform $duration $ease;
+
+  &[data-open='true'] {
+    transform: rotate(90deg);
+  }
+}
+
+// The row already pads below its trigger, so this only adds the remainder.
+.collapsibleBody {
+  padding-top: $sp-4;
+}
+
+.hint {
+  font-size: $fs-12;
+  color: $color-text-muted;
+  margin-top: -#{$sp-8};
+}

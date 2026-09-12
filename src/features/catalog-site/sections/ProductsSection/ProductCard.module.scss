@@ -1,0 +1,83 @@
+// Its own container, so the action row splits on the card's width rather than
+// the canvas's — a narrow card in a wide canvas cannot hold two buttons.
+.card {
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;
+  container-name: card;
+}
+
+.image {
+  aspect-ratio: 1 / 1;
+  margin-bottom: $sp-16;
+}
+
+.name {
+  font-size: $fs-16;
+  font-weight: $fw-semibold;
+  color: $ink-1000;
+  margin-bottom: $sp-6;
+}
+
+.description {
+  @include line-clamp(2);
+  min-height: calc(#{$fs-12} * #{$lh-snug} * 2);
+  font-size: $fs-12;
+  line-height: $lh-snug;
+  color: $color-text-muted;
+  margin-bottom: $sp-12;
+}
+
+.attributes {
+  position: relative; // anchors the out-of-flow overflow chips
+  display: flex;
+  // One line only: the chips that do not fit collapse into a "+N" rather than
+  // wrapping, so the card's height does not depend on its attribute count.
+  flex-wrap: nowrap;
+  gap: $sp-8;
+  margin-bottom: $sp-16;
+  min-height: 26px; // chip height, so a card with no attributes stays aligned
+
+  // One chip always shows, so on a card too narrow for even that it is the
+  // chip's label that gives way rather than the row spilling past the card
+  // edge. Only the first is allowed to shrink; "+N" must stay legible.
+  > :first-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  > [data-fit-more] {
+    flex-shrink: 0;
+  }
+}
+
+// Out of the flow but still laid out, so useFitCount can keep measuring the
+// chip's width and re-show it when the card gets wider.
+.attributeHidden {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+// Matches the Icon primitive's shrink guard — without it the glyph collapses
+// inside the button's flex row.
+.chatIcon {
+  flex-shrink: 0;
+  width: 15px;
+  height: auto;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-12;
+  margin-top: auto;
+
+  // "Request for Quote" plus its arrow needs ~160px, so the pair and the gap
+  // need a ~332px card. Below that they stack, as the mobile design does on
+  // its ~160px cards.
+  @container card (min-width: 332px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

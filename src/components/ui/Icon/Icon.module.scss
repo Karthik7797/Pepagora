@@ -1,0 +1,5 @@
+// Icons sit inside flex rows constantly; without this the container can
+// shrink them to zero width.
+.icon {
+  flex-shrink: 0;
+}

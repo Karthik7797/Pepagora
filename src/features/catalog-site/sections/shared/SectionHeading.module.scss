@@ -1,0 +1,42 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sp-12;
+  text-align: center;
+  margin-bottom: $sp-32;
+
+  @include cq-up('md') {
+    margin-bottom: $sp-40;
+  }
+
+  @include cq-up('xxl') {
+    margin-bottom: $sp-48;
+  }
+}
+
+// Products puts a filter row directly under the heading; the export sets a
+// flat 24px there rather than the wider gap that precedes a content grid.
+.tight.tight {
+  margin-bottom: $sp-24;
+}
+
+// The canvas renders at ~1286px, near the 1241px frame Figma drew, so these
+// sizes are the export's literal values — the 1920 scale factor does not
+// apply to type inside the site.
+.title {
+  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-weight: $fw-semibold;
+  line-height: 1.19;
+  letter-spacing: -0.027em; // -0.694 / 25.854
+  color: $ink-slate;
+  max-width: 30ch;
+}
+
+.subtitle {
+  font-size: clamp(#{$fs-12}, 0.95cqw, #{$fs-14});
+  line-height: 1.56;
+  color: $color-text-muted;
+  // Wide enough to keep the subheading on one line at canvas width.
+  max-width: 100%;
+}

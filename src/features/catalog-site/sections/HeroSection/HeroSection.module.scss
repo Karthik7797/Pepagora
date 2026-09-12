@@ -1,0 +1,135 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 380px;
+  overflow: hidden;
+  background: $grey-500;
+
+  @include cq-up('md') {
+    min-height: 520px;
+  }
+
+  @include cq-up('xl') {
+    min-height: 620px;
+  }
+
+  // 919 / 1920 in the export — keeps the banner proportional as the canvas
+  // narrows beside the editor panel rather than pinning a tall fixed height.
+  @include cq-up('xxl') {
+    min-height: min(919px, 48vw);
+  }
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Placeholder artwork stands in until a banner image is uploaded.
+.fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.26) 0 12%, transparent 12.5%),
+    radial-gradient(circle at 88% 30%, rgba(255, 255, 255, 0.18) 0 9%, transparent 9.5%),
+    radial-gradient(circle at 72% 78%, rgba(255, 255, 255, 0.2) 0 15%, transparent 15.5%),
+    linear-gradient(115deg, #3f3f3f 0%, #6d6d6d 55%, #8a8a8a 100%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.gradient {
+  background: linear-gradient(
+    90deg,
+    rgba(12, 34, 26, 0.92) 0%,
+    rgba(20, 64, 47, 0.72) 42%,
+    rgba(46, 143, 81, 0.35) 100%
+  );
+}
+
+.blackTint {
+  background: rgba(9, 9, 9, 0.55);
+}
+
+.inner {
+  @include site-container;
+  position: relative;
+  z-index: 1;
+
+  // Keep copy clear of the carousel arrows.
+  @include cq-up('md') {
+    padding-inline: $sp-64;
+  }
+
+  @include cq-up('xl') {
+    padding-inline: $sp-56;
+  }
+}
+
+.content {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $sp-20;
+  color: $white;
+}
+
+.title {
+  font-size: clamp(#{$fs-32}, 4.2vw, 56px);
+  font-weight: $fw-bold;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.subline {
+  font-size: clamp(#{$fs-14}, 1.1vw, #{$fs-16});
+  line-height: $lh-relaxed;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 46ch;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(18, 18, 18, 0.54);
+  color: $white;
+  backdrop-filter: blur(2px);
+
+  &:hover {
+    background: rgba(17, 17, 17, 0.6);
+  }
+
+  @include cq-down('md') {
+    display: none;
+  }
+}
+
+.prev {
+  left: $sp-16;
+}
+
+.next {
+  right: $sp-16;
+}
+
+.dots {
+  position: absolute;
+  bottom: $sp-32;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}

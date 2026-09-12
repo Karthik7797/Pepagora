@@ -1,0 +1,42 @@
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.container {
+  @include site-container;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-32;
+  align-items: center;
+
+  @include cq-up('lg') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $sp-48;
+  }
+}
+
+.image {
+  aspect-ratio: 1 / 1;
+  background: $grey-150;
+
+  @include cq-up('lg') {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.title {
+  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-weight: $fw-bold;
+  letter-spacing: -0.02em;
+  margin-bottom: $sp-16;
+}
+
+.body {
+  font-size: $fs-13;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+}

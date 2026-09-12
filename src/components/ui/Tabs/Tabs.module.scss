@@ -1,0 +1,68 @@
+.list {
+  display: flex;
+}
+
+// Underline — the Contents / My Products / Featured Products header
+.underline {
+  border-bottom: 1px solid $color-border;
+
+  .tab {
+    flex: 1;
+    height: 46px;
+    font-size: $fs-13;
+    color: $color-text-muted;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+
+    &:hover {
+      color: $color-text;
+    }
+
+    &[aria-selected='true'] {
+      color: $color-text;
+      font-weight: $fw-semibold;
+      border-bottom-color: $color-primary;
+    }
+  }
+}
+
+// Segmented — the Banners / Options switch inside a section form
+.segmented {
+  padding: 0;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  // The selected tab is the raised white one; unselected sit recessed in grey.
+  .tab {
+    flex: 1;
+    height: 36px;
+    font-size: $fs-13;
+    color: $color-text-muted;
+    background: $grey-200;
+
+    & + .tab {
+      border-left: 1px solid $color-border;
+    }
+
+    &[aria-selected='true'] {
+      background: $white;
+      color: $color-text;
+      font-weight: $fw-medium;
+    }
+  }
+}
+
+.tab {
+  @include button-reset;
+  @include focus-ring($offset: -2px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: $sp-12;
+  white-space: nowrap;
+  transition:
+    color $duration $ease,
+    background-color $duration $ease,
+    border-color $duration $ease;
+}

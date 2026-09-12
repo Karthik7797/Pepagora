@@ -1,0 +1,365 @@
+.footer {
+  background: $slate-800;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.container {
+  @include site-container;
+  padding-block: $sp-40;
+
+  @include cq-up('xl') {
+    padding-block: $sp-64;
+  }
+
+  @include cq-up('xxl') {
+    padding-block: $sp-80;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-32;
+
+  // Mobile stacks brand, then the collapsed link rows flush against each
+  // other so their dividers read as one list.
+  @include cq-down('md') {
+    gap: 0;
+    row-gap: 0;
+  }
+
+  @include cq-up('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // The export's gap is the column gap. Only the social row sits on row 2, and
+  // the design tucks it under the buttons, so the row gap stays small.
+  @include cq-up('lg') {
+    grid-template-columns: 1.4fr 0.8fr 2.4fr;
+    column-gap: $sp-64;
+    row-gap: $sp-16;
+  }
+
+  @include cq-up('xxl') {
+    column-gap: 124px; // Frame 14 gap in the export
+  }
+}
+
+// The exported lockup carries both the mark and the wordmark, already drawn
+// white for the dark footer.
+.brandCell {
+  @include cq-down('md') {
+    padding-bottom: $sp-24;
+  }
+}
+
+.brand {
+  display: block;
+  width: 82px;
+  height: auto;
+  margin-bottom: $sp-16;
+}
+
+.about {
+  font-size: $fs-12;
+  line-height: $lh-relaxed;
+  margin-bottom: $sp-20;
+  max-width: 42ch;
+}
+
+.legalName {
+  font-size: $fs-12;
+  font-weight: $fw-semibold;
+  color: $white;
+  margin-bottom: $sp-12;
+}
+
+.contactRow {
+  display: flex;
+  align-items: flex-start;
+  gap: $sp-10;
+  font-size: $fs-12;
+  line-height: $lh-snug;
+  margin-bottom: $sp-10;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.numberChip {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-4;
+  margin-left: $sp-8;
+  padding: 2px $sp-8;
+  border-radius: $radius-sm;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: $fs-11;
+  color: $white;
+}
+
+// Its own grid cell so mobile can place it last, below the link rows. On
+// desktop it belongs under the brand column, which is where the export draws
+// it, so it is pulled back into column 1.
+.social {
+  display: flex;
+  align-items: center;
+  gap: $sp-10;
+  margin-block: $sp-16;
+  font-size: $fs-12;
+
+  @include cq-up('md') {
+    grid-column: 1;
+    grid-row: 2;
+    // The row is as tall as the tallest link column, so without this the
+    // icons drift to its middle instead of sitting under the buttons.
+    align-self: start;
+    margin-block: 0;
+  }
+
+  // Mobile moves the icons below the link accordions and centres them, so the
+  // "Share" label and the left alignment both drop away.
+  @include cq-down('md') {
+    justify-content: center;
+    gap: $sp-20;
+    margin-block: 0;
+    padding-top: $sp-24;
+  }
+}
+
+// The label only appears beside the desktop icon row; mobile centres the icons
+// alone, so it is dropped from the layout but kept for screen readers.
+.shareLabel {
+  @include cq-down('md') {
+    @include visually-hidden;
+  }
+}
+
+.socialLink {
+  color: rgba(255, 255, 255, 0.82);
+  transition: color $duration $ease;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.messageButtons {
+  display: grid;
+  // The mobile design runs both buttons full width, one above the other.
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-12;
+
+  @include cq-up('md') {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    justify-content: start;
+  }
+}
+
+.messageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-8;
+  padding: $sp-8 $sp-16;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.14);
+  color: $white;
+  font-size: $fs-12;
+  transition: background-color $duration $ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+}
+
+// Each link column collapses to a titled row with a `+` below md. The desktop
+// footer keeps all three panels open, so the toggle goes inert rather than the
+// markup changing shape between breakpoints.
+.linkGroup {
+  @include cq-down('md') {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+}
+
+.groupToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+
+  @include cq-down('md') {
+    min-height: 64px; // divider spacing measured off the mobile design
+  }
+
+  @include cq-up('md') {
+    // Nothing to toggle once the panel is permanently open.
+    pointer-events: none;
+  }
+}
+
+.columnTitle {
+  font-size: $fs-13;
+  font-weight: $fw-semibold;
+  color: $white;
+
+  @include cq-up('md') {
+    margin-bottom: $sp-16;
+  }
+}
+
+.plus {
+  position: relative;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 1.5px;
+    background: currentColor;
+    transform: translateY(-50%);
+  }
+
+  // The vertical stroke rotates away, turning the `+` into a `-` when open.
+  &::after {
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform $duration $ease;
+  }
+
+  &[data-open='true']::after {
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  @include cq-up('md') {
+    display: none;
+  }
+}
+
+.groupPanel {
+  @include cq-down('md') {
+    // Collapsed rows must not leave their links focusable or spaced out.
+    display: none;
+    padding-bottom: $sp-20;
+
+    &[data-open='true'] {
+      display: block;
+    }
+  }
+}
+
+.link {
+  display: block;
+  font-size: $fs-12;
+  margin-bottom: $sp-10;
+  transition: color $duration $ease;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.productColumns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-24;
+
+  @include cq-up('sm') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.group {
+  margin-bottom: $sp-20;
+}
+
+.groupTitle {
+  font-size: $fs-12;
+  font-weight: $fw-semibold;
+  color: $white;
+  margin-bottom: $sp-8;
+}
+
+.groupItem {
+  font-size: $fs-11;
+  line-height: $lh-relaxed;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.bottomInner {
+  @include site-container;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sp-12;
+  padding-block: $sp-16;
+  font-size: $fs-11;
+  // The locale chip sets its own colour, so it keeps its lighter treatment.
+  color: #7a7a7a;
+
+  // Side by side the two halves collide well before md, so the bar stacks and
+  // centres instead of wrapping mid-sentence.
+  @include cq-down('md') {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $sp-10;
+  }
+}
+
+.bottomLeft {
+  display: flex;
+  align-items: center;
+  gap: $sp-12;
+
+  @include cq-down('md') {
+    flex-direction: column;
+    gap: $sp-10;
+  }
+}
+
+.localeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-4;
+  padding: $sp-4 $sp-8;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: $radius-md;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bottomLinks {
+  display: flex;
+  align-items: center;
+  gap: $sp-10;
+
+  @include cq-down('md') {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.bottomLink {
+  text-decoration: underline;
+
+  &:hover {
+    color: $white;
+  }
+}

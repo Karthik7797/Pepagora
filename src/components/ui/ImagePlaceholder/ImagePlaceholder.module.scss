@@ -1,0 +1,22 @@
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background: $grey-150;
+}
+
+// The export draws this glyph at a flat 46.54px in every placeholder frame,
+// whatever that frame's size — 816x612 and 784x588 both carry the same 72px
+// (at 1920) icon. Scaling the whole 507x381 artwork to fill the box instead
+// made the glyph grow with its container: 34.5px in a product card against
+// 52px in R&D.
+.glyph {
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+  opacity: 0.2;
+}

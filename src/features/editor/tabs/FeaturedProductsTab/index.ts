@@ -1,0 +1,1 @@
+export { FeaturedProductsTab } from './FeaturedProductsTab';

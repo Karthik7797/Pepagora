@@ -1,0 +1,113 @@
+.section {
+  @include section-padding;
+  background: $white;
+
+  // The logo wall is short, so the shared rhythm leaves it looking cramped
+  // against the band that follows. The design gives this section noticeably
+  // more room below the wall than its height alone would suggest.
+  @include cq-up('md') {
+    padding-bottom: $sp-112;
+  }
+}
+
+.container {
+  @include site-container;
+}
+
+// Heading over a subtitle row, then a wide gap down to the logo wall — the
+// wall reads as its own band in the design rather than as part of the header.
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-16;
+  margin-bottom: $sp-40;
+
+  @include cq-up('md') {
+    gap: $sp-24;
+    margin-bottom: $sp-64;
+  }
+}
+
+// Matches SectionHeading: the canvas sits near the 1241px frame Figma drew,
+// so these are the export's literal sizes, not the 1920-scaled ones.
+.title {
+  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-weight: $fw-semibold;
+  line-height: 1.19;
+  letter-spacing: -0.027em;
+  color: $ink-slate;
+}
+
+// space-between so the arrows sit at the far edge, flex-end so they align to
+// the subtitle's last line the way the export has them.
+.subtitleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $sp-24;
+}
+
+.subtitle {
+  font-size: clamp(#{$fs-12}, 0.95cqw, #{$fs-14});
+  line-height: 1.56;
+  color: $color-text-muted;
+  max-width: 64ch;
+}
+
+.controls {
+  display: flex;
+  gap: $sp-24;
+  flex-shrink: 0;
+
+  @include cq-down('sm') {
+    display: none;
+  }
+}
+
+// The export lays the wall out as a single left-aligned row with a 75px gap at
+// 1920. Wrapping to a centred grid below 'lg' keeps the logos legible once the
+// canvas is too narrow to hold six across.
+.logos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-32 $sp-24;
+  align-items: center;
+  justify-items: center;
+
+  @include cq-up('sm') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  // Six wordmarks plus gaps need ~770px, so the single row becomes viable at
+  // 'md'. Waiting for 'lg' would drop a 1440-1600px window — where the canvas
+  // is only 856-1016px — back to a wrapped grid.
+  @include cq-up('md') {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $sp-24;
+  }
+
+  @include cq-up('lg') {
+    gap: $sp-32;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // Hold the wordmark's own width in the flex row; shrink only if the canvas
+  // gets tight, never grow to fill.
+  flex: 0 1 auto;
+  min-width: 0;
+
+  // Each wordmark keeps the intrinsic size it has in the design — they are not
+  // uniform. Only `max-width` is fluid, so a narrow canvas shrinks a logo into
+  // its track instead of overflowing; `height: auto` then holds the ratio.
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

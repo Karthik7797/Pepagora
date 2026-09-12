@@ -1,0 +1,78 @@
+.zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-8;
+  min-height: 148px;
+  padding: $sp-20;
+  border: 1px dashed $color-border-strong;
+  border-radius: $radius-md;
+  background: $white;
+  text-align: center;
+  transition:
+    border-color $duration $ease,
+    background-color $duration $ease;
+
+  &[data-dragging='true'] {
+    border-color: $color-primary;
+    background: $red-50;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  font-size: $fs-13;
+  color: $color-text;
+}
+
+.separator {
+  font-size: $fs-12;
+  color: $color-text-subtle;
+}
+
+.hint {
+  font-size: $fs-11;
+  color: $color-text-subtle;
+}
+
+.input {
+  @include visually-hidden;
+}
+
+.preview {
+  position: relative;
+  width: 100%;
+  height: 148px;
+  border-radius: $radius-md;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.remove {
+  position: absolute;
+  top: $sp-8;
+  right: $sp-8;
+  background: rgba(17, 17, 17, 0.6);
+  color: $white;
+
+  &:hover {
+    background: rgba(17, 17, 17, 0.8);
+  }
+}
+
+.error {
+  font-size: $fs-11;
+  color: $color-primary;
+}

@@ -1,0 +1,111 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-6;
+}
+
+.label {
+  font-size: $fs-12;
+  font-weight: $fw-semibold;
+  color: $color-text;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.trigger {
+  @include button-reset;
+  @include focus-ring;
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+  width: 100%;
+  height: 40px;
+  padding-inline: $sp-12;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $white;
+  font-size: $fs-13;
+  transition: border-color $duration $ease;
+
+  &:hover:not(:disabled) {
+    border-color: $color-border-strong;
+  }
+
+  &[aria-expanded='true'] {
+    border-color: $ink-900;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sm .trigger {
+  height: 32px;
+  padding-inline: $sp-10;
+  border-radius: $radius-sm;
+  font-size: $fs-12;
+}
+
+.placeholder {
+  color: $color-field-text;
+}
+
+.value {
+  @include truncate;
+  color: $color-field-text;
+}
+
+// Two chevrons stacked tight, mimicking a native select's stepper control.
+.stepper {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-left: auto;
+  color: $color-text-muted;
+  line-height: 0;
+
+  // The glyphs carry their own padding; pulling them together closes the gap.
+  svg:first-child {
+    margin-bottom: -4px;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: $z-dropdown;
+  padding: $sp-4;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $white;
+  box-shadow: $shadow-lg;
+  max-height: 240px;
+  overflow-y: auto;
+  @include custom-scrollbar;
+}
+
+.option {
+  @include button-reset;
+  display: block;
+  width: 100%;
+  padding: $sp-8 $sp-10;
+  border-radius: $radius-sm;
+  text-align: left;
+  font-size: $fs-13;
+  color: $color-field-text;
+
+  &:hover,
+  &[data-active='true'] {
+    background: $grey-200;
+  }
+
+  &[aria-selected='true'] {
+    font-weight: $fw-medium;
+  }
+}

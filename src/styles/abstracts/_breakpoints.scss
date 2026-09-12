@@ -1,0 +1,73 @@
+@use 'sass:map';
+
+// Target resolutions from the brief: 375 / 768 / 1440 / 1920.
+// Breakpoints sit just below each target so that width lands inside the
+// intended band rather than on its boundary.
+$breakpoints: (
+  'xs': 420px,
+  // narrow canvas — the editor preview at small window sizes
+  'sm': 560px,
+  // large phone / very narrow canvas
+  'md': 768px,
+  // tablet
+  'lg': 1024px,
+  // small laptop — panel becomes a slide-over below this
+  'xl': 1440px,
+  // desktop
+  'xxl': 1920px,
+);
+
+@function bp($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Unknown breakpoint `#{$name}`. Available: #{map.keys($breakpoints)}.';
+  }
+  @return map.get($breakpoints, $name);
+}
+
+// Mobile-first: styles apply from this width up.
+@mixin up($name) {
+  @media (min-width: bp($name)) {
+    @content;
+  }
+}
+
+// Escape hatch for the few places where capping is genuinely simpler.
+@mixin down($name) {
+  @media (max-width: #{bp($name) - 0.02px}) {
+    @content;
+  }
+}
+
+@mixin between($from, $to) {
+  @media (min-width: bp($from)) and (max-width: #{bp($to) - 0.02px}) {
+    @content;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Container queries
+//
+// The rendered site sits inside the editor canvas, which is far narrower than
+// the window — roughly 1286px inside a 1920px viewport. Sizing its sections
+// off the viewport therefore lays them out for space they do not have.
+// These mixins query the canvas instead, so a section reflows when the canvas
+// narrows regardless of how wide the browser is.
+// ---------------------------------------------------------------------------
+
+@mixin cq-up($name) {
+  @container site (min-width: #{bp($name)}) {
+    @content;
+  }
+}
+
+@mixin cq-down($name) {
+  @container site (max-width: #{bp($name) - 0.02px}) {
+    @content;
+  }
+}
+
+@mixin cq-between($from, $to) {
+  @container site (min-width: #{bp($from)}) and (max-width: #{bp($to) - 0.02px}) {
+    @content;
+  }
+}

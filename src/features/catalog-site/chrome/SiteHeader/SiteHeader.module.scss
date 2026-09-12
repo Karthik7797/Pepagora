@@ -1,0 +1,173 @@
+// Geometry from the Nav node in home_page.json (1920x65) plus positions
+// measured from the Figma page export.
+.header {
+  display: flex;
+  align-items: center;
+  gap: $sp-16;
+  height: 52px;
+  padding-inline: $sp-16;
+  background: $white;
+  border-bottom: 1px solid #e2e6e9;
+
+  @include cq-up('md') {
+    height: 58px;
+    padding-inline: $sp-32;
+  }
+
+  @include cq-up('lg') {
+    padding-inline: $sp-48;
+  }
+
+  @include cq-up('xxl') {
+    height: 65px;
+    padding-inline: $sp-144;
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px; // 9.7 in the export
+  flex-shrink: 0;
+  font-size: $fs-16;
+  font-weight: $fw-semibold;
+  line-height: 1;
+  color: #000000;
+
+  @include cq-up('xxl') {
+    font-size: 23px; // 23.2 in the export
+  }
+}
+
+// Two overlapping rounded shapes, as drawn in the default template.
+.mark {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+
+  @include cq-up('xxl') {
+    width: 34px;
+    height: 34px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: $radius-pill;
+  }
+
+  // Angled capsule.
+  &::before {
+    width: 52%;
+    height: 96%;
+    left: 4%;
+    top: 0;
+    transform: rotate(38deg);
+    transform-origin: center;
+    background: $grey-500;
+  }
+
+  // Small circle tucked into the lower right.
+  &::after {
+    width: 38%;
+    height: 38%;
+    right: 4%;
+    bottom: 2%;
+    background: $grey-400;
+  }
+}
+
+// Nav sits with the rest of the controls on the right, not centred.
+.nav {
+  display: none;
+  align-items: center;
+  margin-left: auto;
+
+  @include cq-up('lg') {
+    display: flex;
+  }
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-4;
+  height: 40px;
+  padding-inline: $sp-12;
+  border-radius: 10px;
+  font-size: $fs-13;
+  color: $ink-1000;
+  white-space: nowrap;
+  transition:
+    color $duration $ease,
+    background-color $duration $ease;
+
+  &:hover {
+    background: $grey-150;
+  }
+
+  @include cq-up('xxl') {
+    font-size: $fs-14;
+  }
+}
+
+.caret {
+  color: $grey-600;
+  stroke-width: 2;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $sp-12;
+  margin-left: auto;
+  flex-shrink: 0;
+
+  @include cq-up('lg') {
+    margin-left: $sp-16;
+  }
+}
+
+// Bordered box, 72x36, radius 6.
+.locale {
+  display: none;
+  align-items: center;
+  gap: $sp-4;
+  height: 36px;
+  padding: 0 $sp-8 0 $sp-4;
+  border: 1px solid #ececec;
+  border-radius: $radius-sm + 2px;
+  font-size: $fs-12;
+  font-weight: $fw-medium;
+  color: #212121;
+
+  @include cq-up('md') {
+    display: flex;
+  }
+}
+
+// Bordered field, 346x36, radius 6, #f1f2f4 hairline.
+.search {
+  display: none;
+  width: 220px;
+  height: 36px;
+
+  @include cq-up('xl') {
+    display: flex;
+  }
+
+  @include cq-up('xxl') {
+    width: 346px;
+  }
+}
+
+// 119.7 x 36, radius 8, near-black.
+.cta {
+  height: 36px;
+  padding-inline: $sp-12;
+  border-radius: $radius-md;
+  font-size: $fs-12;
+  white-space: nowrap;
+}

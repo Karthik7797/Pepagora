@@ -1,0 +1,7 @@
+// Full-bleed: the site takes the whole width so sections size themselves
+// against the viewport rather than the narrower editor canvas.
+.preview {
+  flex: 1;
+  min-width: 0;
+  background: $white;
+}

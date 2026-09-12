@@ -1,0 +1,55 @@
+.iconButton {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: $radius-md;
+  color: $color-text;
+  transition:
+    background-color $duration $ease,
+    color $duration $ease,
+    border-color $duration $ease;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.plain:hover:not(:disabled) {
+  background: $grey-200;
+}
+
+// Transparent so the section behind shows through, with the ring picking up
+// `currentColor` from the glyph — border and arrow stay the same colour, and
+// any caller that recolours the button recolours both at once.
+.circle {
+  border-radius: $radius-pill;
+  border: 1px solid currentColor;
+  background: transparent;
+
+  // A tint rather than a solid fill, so hover does not undo the transparency.
+  &:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.outline {
+  border: 1px solid $color-border;
+
+  &:hover:not(:disabled) {
+    background: $grey-100;
+  }
+}
+
+.filled {
+  background: $ink-1000;
+  color: $white;
+  border-radius: $radius-pill;
+
+  &:hover:not(:disabled) {
+    background: $ink-900;
+  }
+}

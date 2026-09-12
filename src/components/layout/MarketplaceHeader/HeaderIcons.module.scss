@@ -1,0 +1,14 @@
+// The exported locale glyphs are monochrome PNGs with an alpha channel, so
+// they are used as a mask. That keeps the original artwork while letting each
+// icon take `currentColor` from the control around it.
+.maskIcon {
+  display: block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}

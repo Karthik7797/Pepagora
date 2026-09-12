@@ -1,0 +1,46 @@
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.container {
+  @include site-container;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-16;
+
+  @include cq-up('md') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: $sp-12;
+  padding: $sp-20;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.icon {
+  color: $green-500;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.label {
+  font-size: $fs-12;
+  color: $color-text-muted;
+  margin-bottom: $sp-4;
+}
+
+.value {
+  font-size: $fs-13;
+  font-weight: $fw-medium;
+  color: $ink-1000;
+  line-height: $lh-snug;
+}

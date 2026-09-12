@@ -1,0 +1,167 @@
+// Geometry from the Header node in home_page.json: 1920x81, 32px side
+// padding, 42px item spacing, #ffffff on a #e9e9e9 hairline.
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  display: flex;
+  align-items: center;
+  gap: $sp-16;
+  height: $header-height-sm;
+  padding-inline: $sp-16;
+  background: $white;
+  border-bottom: 1px solid $color-border;
+
+  @include up('lg') {
+    height: $header-height-lg;
+    gap: $sp-20;
+    padding-inline: $sp-24;
+  }
+
+  @include up('xl') {
+    height: $header-height;
+    gap: 42px;
+    padding-inline: $sp-32;
+    // The export carries 26px block padding; the row is height-driven, so it
+    // is declared here for fidelity and clipped by the fixed height.
+    padding-block: 26px;
+  }
+}
+
+.categories {
+  @include button-reset;
+  @include focus-ring;
+  display: none;
+  align-items: center;
+  gap: $sp-8;
+  flex-shrink: 0;
+  font-size: $fs-14;
+  font-weight: $fw-medium;
+  color: #113311;
+  transition: color $duration $ease;
+
+  @include up('lg') {
+    display: flex;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.categoriesIcon {
+  display: flex;
+  color: $color-primary;
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+  max-width: 908px;
+  height: 40px;
+
+  @include down('md') {
+    display: none;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+  margin-left: auto;
+  flex-shrink: 0;
+
+  @include up('xl') {
+    gap: $sp-12;
+  }
+}
+
+.selector {
+  @include button-reset;
+  @include focus-ring;
+  display: none;
+  align-items: center;
+  gap: $sp-6;
+  font-size: $fs-14;
+  font-weight: $fw-medium;
+  color: #232323;
+  transition: color $duration $ease;
+
+  @include up('lg') {
+    display: flex;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 26px;
+  background: $color-border;
+
+  @include down('lg') {
+    display: none;
+  }
+}
+
+.bell,
+.account {
+  @include button-reset;
+  @include focus-ring;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: $ink-1000;
+  transition: color $duration $ease;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.cta {
+  width: 205px;
+  height: 40px;
+  padding-inline: $sp-16;
+  font-size: $fs-14;
+  font-weight: $fw-medium;
+
+  @include down('md') {
+    display: none;
+  }
+}
+
+.rfq {
+  @include button-reset;
+  @include focus-ring;
+  position: relative;
+  display: none;
+  align-items: center;
+  color: $color-primary;
+
+  @include up('lg') {
+    display: flex;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -7px;
+  right: -6px;
+  min-width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 4px;
+  border-radius: $radius-pill;
+  background: $color-primary;
+  color: $white;
+  font-size: 12px;
+  font-weight: $fw-medium;
+  line-height: 1;
+}

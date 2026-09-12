@@ -1,0 +1,16 @@
+.wrapper {
+  padding: $sp-32 $sp-20;
+  text-align: center;
+}
+
+.title {
+  font-size: $fs-14;
+  font-weight: $fw-semibold;
+  margin-bottom: $sp-8;
+}
+
+.body {
+  font-size: $fs-12;
+  color: $color-text-muted;
+  line-height: $lh-relaxed;
+}

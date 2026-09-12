@@ -1,0 +1,43 @@
+.chip {
+  @include button-reset;
+  @include focus-ring;
+  display: inline-flex;
+  align-items: center;
+  // 32px tall with 10px side padding: the export nests a 6px typography inset
+  // inside the chip's own 4px padding.
+  height: 32px;
+  padding-inline: $sp-10;
+  border: 1px solid $color-border;
+  border-radius: $radius-pill;
+  background: $white;
+  font-size: $fs-13;
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: $ink-slate;
+  white-space: nowrap;
+  transition:
+    background-color $duration $ease,
+    border-color $duration $ease,
+    color $duration $ease;
+}
+
+button.chip:hover {
+  border-color: $ink-900;
+}
+
+.active {
+  background: $ink-1000;
+  border-color: $ink-1000;
+  color: $white;
+
+  &:hover {
+    background: $ink-900;
+  }
+}
+
+.static {
+  cursor: default;
+  font-size: $fs-11;
+  height: 26px;
+  padding-inline: $sp-10;
+}

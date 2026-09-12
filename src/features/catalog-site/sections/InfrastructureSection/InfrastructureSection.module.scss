@@ -1,0 +1,115 @@
+.section {
+  @include section-padding;
+  background: $white;
+}
+
+.container {
+  @include site-container;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $sp-32;
+
+  // The export splits this row 752 / 816 with a 64px gap, not 50/50. An even
+  // split makes the image column wider than the design's, and since the frame
+  // is locked to 4:3 that extra width becomes height the text cannot fill.
+  // The export splits this row 752 / 816 with a 64px gap, not 50/50 — at
+  // 1632px of content that reproduces the drawn 816x612 image exactly.
+  @include cq-up('lg') {
+    grid-template-columns: minmax(0, 752fr) minmax(0, 816fr);
+    gap: $sp-64;
+    align-items: start;
+  }
+}
+
+// The export stacks this column heading / body / specs with a 48px rhythm,
+// which is also what keeps it level with the 4:3 image beside it.
+.title {
+  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-weight: $fw-bold;
+  letter-spacing: -0.02em;
+  margin-bottom: $sp-24;
+}
+
+.body {
+  font-size: $fs-13;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  margin-bottom: $sp-40;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-12;
+
+  @include cq-up('xs') {
+    gap: $sp-16;
+  }
+
+  @include cq-up('lg') {
+    gap: $sp-24;
+  }
+}
+
+.spec {
+  padding: $sp-16;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+
+  // Cards carry more vertical padding once the row splits in two, so the
+  // column stands level with the image rather than stopping short of it.
+  @include cq-up('lg') {
+    padding: $sp-24;
+  }
+}
+
+.specIcon {
+  flex-shrink: 0;
+  display: block;
+  width: 21px;
+  height: 21px;
+  margin-bottom: $sp-20;
+}
+
+.specLabel {
+  font-size: $fs-12;
+  font-weight: $fw-semibold;
+  color: $ink-1000;
+  margin-bottom: $sp-4;
+}
+
+.specValue {
+  font-size: $fs-12;
+  color: $color-text-muted;
+}
+
+.gallery {
+  position: relative;
+}
+
+.frame {
+  aspect-ratio: 4 / 3;
+  background: $grey-150;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.prev {
+  left: $sp-16;
+}
+
+.next {
+  right: $sp-16;
+}
+
+.dots {
+  margin-top: $sp-16;
+}

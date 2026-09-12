@@ -1,0 +1,34 @@
+.item {
+  padding: $sp-12;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $sp-8;
+  margin-bottom: $sp-12;
+}
+
+.itemTitle {
+  font-size: $fs-12;
+  font-weight: $fw-semibold;
+  color: $color-text-muted;
+}
+
+.addButton {
+  @include button-reset;
+  @include focus-ring;
+  align-self: flex-start;
+  font-size: $fs-13;
+  font-weight: $fw-medium;
+  color: $color-text;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: $color-primary;
+  }
+}

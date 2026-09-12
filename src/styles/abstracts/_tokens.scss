@@ -1,0 +1,159 @@
+// Design tokens sampled from the Figma export (Home_page.json).
+// Everything visual should resolve back to something in this file.
+
+// ---------------------------------------------------------------------------
+// Colour
+// ---------------------------------------------------------------------------
+
+// Pepagora brand red — app chrome, primary actions, active nav
+$red-500: #d92c27;
+$red-600: #c02420;
+$red-100: #f6e0e0;
+$red-50: #fdf2f2;
+
+// Near-black used for dark buttons, toggles and the marketplace pill
+$ink-900: #32383e;
+$ink-800: #23282d;
+$ink-1000: #111111;
+// Warmer near-black the export uses for site copy — headings, chips, search
+$ink-slate: #24292e;
+
+// The site being edited has its own green accent, independent of the app red
+$green-500: #2e8f51;
+$green-600: #26743f;
+$green-100: #e6f2eb;
+
+// Neutrals
+$white: #ffffff;
+$grey-50: #fafafa;
+$grey-100: #f8f8f8;
+$grey-150: #f7f7f7;
+$grey-200: #f1f1f1;
+$grey-300: #e9e9e9;
+$grey-400: #d8d8d8;
+$grey-500: #a8adb3;
+$grey-600: #6b7280;
+$grey-700: #4b5157;
+
+// Site footer. The Footer node in Home_page.json is the marketplace footer
+// (red wordmark), not this one, so the value comes from the design
+// screenshots instead: #242424 desktop, #272727 mobile.
+$slate-800: #262626;
+
+// Section hover badge on the canvas
+$blue-200: #b4dcf5;
+$blue-700: #1573b8;
+
+// Semantic aliases — prefer these in components
+$color-primary: $red-500;
+$color-primary-hover: $red-600;
+$color-surface: $white;
+$color-canvas: $grey-150;
+$color-app-bg: $grey-100;
+$color-border: $grey-300;
+$color-border-strong: $grey-400;
+$color-text: $ink-1000;
+$color-text-muted: $grey-600;
+$color-text-subtle: $grey-500;
+$color-field-text: #6b6c6e; // form field text and placeholders
+
+// ---------------------------------------------------------------------------
+// Typography
+// ---------------------------------------------------------------------------
+
+$font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  sans-serif;
+
+$fs-11: 0.6875rem;
+$fs-12: 0.75rem;
+$fs-13: 0.8125rem;
+$fs-14: 0.875rem;
+$fs-15: 0.9375rem;
+$fs-16: 1rem;
+$fs-18: 1.125rem;
+$fs-20: 1.25rem;
+$fs-24: 1.5rem;
+$fs-32: 2rem;
+$fs-40: 2.5rem;
+$fs-48: 3rem;
+
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+$lh-tight: 1.15;
+$lh-snug: 1.35;
+$lh-normal: 1.5;
+$lh-relaxed: 1.65;
+
+// ---------------------------------------------------------------------------
+// Spacing — 4pt scale
+// ---------------------------------------------------------------------------
+
+$sp-2: 0.125rem;
+$sp-4: 0.25rem;
+$sp-6: 0.375rem;
+$sp-8: 0.5rem;
+$sp-10: 0.625rem;
+$sp-12: 0.75rem;
+$sp-16: 1rem;
+$sp-20: 1.25rem;
+$sp-24: 1.5rem;
+$sp-32: 2rem;
+$sp-40: 2.5rem;
+$sp-48: 3rem;
+$sp-56: 3.5rem;
+$sp-64: 4rem;
+$sp-80: 5rem;
+$sp-96: 6rem;
+$sp-112: 7rem; // vertical section padding in the design
+$sp-144: 9rem; // horizontal site gutter in the design
+
+// ---------------------------------------------------------------------------
+// Radii, shadow, motion
+// ---------------------------------------------------------------------------
+
+// xs and xxl match `border radii` in design-tokens.tokens.json (4 / 100).
+// The intermediate steps are taken from Home_page.json, where the Figma
+// export carries resolved values per component.
+$radius-sm: 4px; // xs
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-pill: 999px; // xxl (100 in the export; any value past 50% is a pill)
+
+$shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.05);
+$shadow-md: 0 2px 8px rgba(17, 17, 17, 0.06);
+$shadow-lg: 0 8px 24px rgba(17, 17, 17, 0.1);
+
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
+$duration: 160ms;
+
+// ---------------------------------------------------------------------------
+// Layout — fixed chrome dimensions, referenced by offsets elsewhere
+// ---------------------------------------------------------------------------
+
+// The header shrinks below xl; anything pinned under it must track the same
+// steps or a transparent gap opens up between the two.
+$header-height-sm: 64px;
+$header-height-lg: 74px;
+$header-height: 81px; // Header frame height in home_page.json
+$toolbar-height: 52px;
+$rail-width: 64px;
+$rail-width-expanded: 232px;
+$panel-width: 480px; // matches the ~28% panel/frame ratio in the design
+$panel-width-xl: 530px;
+$site-max-width: 1632px; // content width from home_page.json (1920 - 144*2)
+
+// ---------------------------------------------------------------------------
+// z-index — kept in one place so stacking never becomes guesswork
+// ---------------------------------------------------------------------------
+
+$z-canvas-badge: 5;
+$z-sticky: 10;
+$z-rail: 20;
+$z-header: 30;
+$z-dropdown: 40;
+$z-overlay: 50;
+$z-modal: 60;

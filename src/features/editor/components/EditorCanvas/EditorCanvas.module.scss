@@ -1,0 +1,41 @@
+.canvas {
+  flex: 1;
+  min-width: 0;
+  padding: $sp-16;
+  background: $color-app-bg;
+
+  @include up('xl') {
+    padding: $sp-20;
+  }
+}
+
+.frame {
+  overflow: hidden;
+  border-radius: $radius-md;
+  background: $white;
+  box-shadow: $shadow-sm;
+}
+
+.section {
+  position: relative;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+  transition: outline-color $duration $ease;
+
+  &[data-active='true'] {
+    outline-color: $blue-200;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: $z-canvas-badge;
+  padding: $sp-4 $sp-10;
+  background: $blue-200;
+  color: $blue-700;
+  font-size: $fs-12;
+  font-weight: $fw-medium;
+  pointer-events: none;
+}

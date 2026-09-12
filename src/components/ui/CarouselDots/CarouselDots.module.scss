@@ -1,0 +1,43 @@
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-6;
+}
+
+.dot {
+  @include button-reset;
+  @include focus-ring;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: $grey-400;
+  transition:
+    background-color $duration $ease,
+    width $duration $ease,
+    height $duration $ease;
+
+  &[aria-current='true'] {
+    background: $ink-900;
+  }
+}
+
+// Hero uses bars rather than dots. All bars share a width; only the active one
+// has height, so it reads as a solid block against the hairlines either side.
+// They share a baseline, so that block grows upward rather than recentring.
+.bars {
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.bars .dot {
+  width: 16px;
+  height: 3px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.5);
+
+  &[aria-current='true'] {
+    height: 7px;
+    background: $white;
+  }
+}

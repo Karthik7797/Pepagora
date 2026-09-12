@@ -1,0 +1,67 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: $panel-width;
+  height: calc(100vh - var(--header-h) - #{$toolbar-height});
+  position: sticky;
+  top: calc(var(--header-h) + #{$toolbar-height});
+  background: $white;
+  border-left: 1px solid $color-border;
+
+  @include up('xxl') {
+    width: $panel-width-xl;
+  }
+
+  // Below laptop the panel slides over the canvas.
+  @include down('lg') {
+    position: fixed;
+    top: calc(var(--header-h) + #{$toolbar-height});
+    right: 0;
+    bottom: 0;
+    width: min(#{$panel-width}, 100%);
+    height: auto;
+    z-index: $z-overlay;
+    transform: translateX(100%);
+    transition: transform $duration $ease;
+    box-shadow: $shadow-lg;
+
+    &[data-open='true'] {
+      transform: translateX(0);
+    }
+  }
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  @include custom-scrollbar;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-12;
+  padding: $sp-16 $sp-20;
+  border-top: 1px solid $color-border;
+  background: $white;
+}
+
+.toggle {
+  display: none;
+
+  @include down('lg') {
+    display: inline-flex;
+    position: fixed;
+    right: $sp-16;
+    bottom: calc(#{$sp-16} + 72px);
+    z-index: calc(#{$z-overlay} + 1);
+    background: $color-primary;
+    color: $white;
+    box-shadow: $shadow-lg;
+
+    &:hover {
+      background: $color-primary-hover;
+    }
+  }
+}

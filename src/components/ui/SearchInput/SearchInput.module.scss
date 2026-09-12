@@ -1,0 +1,88 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: $sp-12;
+  width: 100%;
+  height: 100%;
+  min-height: 40px;
+  padding-inline: $sp-16;
+  border-radius: 32px;
+  border: 1px solid $color-border;
+  border-radius: $radius-pill;
+  background: $white;
+  transition: border-color $duration $ease;
+
+  &:focus-within {
+    border-color: $ink-900;
+  }
+}
+
+.brand {
+  border-color: $color-primary;
+
+  &:focus-within {
+    border-color: $color-primary-hover;
+  }
+}
+
+.sm {
+  height: 34px;
+  border-radius: $radius-md;
+}
+
+// Catalog site nav: 6px radius on a #f1f2f4 hairline.
+.boxed {
+  gap: $sp-8;
+  padding-inline: $sp-10;
+  border-color: #f1f2f4;
+  border-radius: $radius-sm + 2px;
+
+  &:focus-within {
+    border-color: $color-border-strong;
+  }
+
+  .input {
+    font-size: $fs-13;
+    color: $color-field-text;
+  }
+
+  .input::placeholder {
+    color: $color-field-text;
+  }
+
+  .icon {
+    color: $ink-slate;
+    stroke-width: 1.6;
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  color: $ink-1000;
+  stroke-width: 2;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  font-size: $fs-16;
+  color: $color-field-text;
+
+  &::placeholder {
+    color: $color-field-text;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.trailing {
+  display: flex;
+  align-items: center;
+  gap: $sp-4;
+  flex-shrink: 0;
+  color: $color-text-muted;
+}
