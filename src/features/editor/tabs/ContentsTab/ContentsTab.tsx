@@ -3,9 +3,12 @@
 import { Accordion, Toggle } from '@/components/ui';
 import { getSectionLabel, isAlwaysVisible } from '@/features/catalog-site';
 import type { Section } from '@/features/catalog-site/types';
-import { FORM_REGISTRY } from '../../forms';
+import { FORM_REGISTRY, LogoForm } from '../../forms';
 import { useEditorStore } from '../../store/editor.store';
 import s from './ContentsTab.module.scss';
+
+/** Identifies the Logo row in the same open/closed state as the sections. */
+const LOGO_ROW_ID = 'site-logo';
 
 /** Renders one accordion row per section, with its form from the registry. */
 export function ContentsTab({ sections }: { sections: Section[] }) {
@@ -16,6 +19,15 @@ export function ContentsTab({ sections }: { sections: Section[] }) {
 
   return (
     <div className={s.list}>
+      {/* Site chrome sits above the page sections, as the design shows. */}
+      <Accordion
+        title="Logo"
+        open={openSectionId === LOGO_ROW_ID}
+        onToggle={() => toggleSection(LOGO_ROW_ID)}
+      >
+        <LogoForm />
+      </Accordion>
+
       {sections.map((section) => {
         const label = getSectionLabel(section.type);
         const alwaysVisible = isAlwaysVisible(section.type);

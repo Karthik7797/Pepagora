@@ -76,3 +76,60 @@
   font-size: $fs-11;
   color: $color-primary;
 }
+
+// ---------------------------------------------------------------------------
+// Compact variant — the logo boxes. Dashed outline in both states; the filled
+// one keeps the artwork on a grey ground with a Change bar beneath it.
+// ---------------------------------------------------------------------------
+
+.compactEmpty,
+.compactFilled {
+  border: 1px dashed $color-border-strong;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.compactEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-8;
+  min-height: 132px;
+  padding: $sp-20;
+  text-align: center;
+}
+
+.compactPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 148px;
+  padding: $sp-20;
+  background: $grey-150;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    // Logos must not be cropped, unlike the banner preview above.
+    object-fit: contain;
+  }
+}
+
+.change {
+  @include button-reset;
+  @include focus-ring($offset: -2px);
+  display: block;
+  width: 100%;
+  padding-block: $sp-12;
+  font-size: $fs-14;
+  font-weight: $fw-semibold;
+  color: $color-text;
+  background: $white;
+  cursor: pointer;
+  transition: background-color $duration $ease;
+
+  &:hover {
+    background: $grey-150;
+  }
+}

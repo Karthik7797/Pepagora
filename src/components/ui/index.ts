@@ -1,6 +1,7 @@
 export { Accordion } from './Accordion';
 export { Button } from './Button';
 export { CarouselDots } from './CarouselDots';
+export { Checkbox } from './Checkbox';
 export { Chip } from './Chip';
 export { Dropzone } from './Dropzone';
 export { Icon } from './Icon';
@@ -18,5 +19,6 @@ export { Toggle } from './Toggle';
 export type { IconName } from './Icon';
 export type { NavIconName } from './NavIcon';
 export type { ButtonVariant, ButtonSize } from './Button';
+export type { CheckboxProps } from './Checkbox';
 export type { SelectOption } from './Select';
 export type { TabItem } from './Tabs';

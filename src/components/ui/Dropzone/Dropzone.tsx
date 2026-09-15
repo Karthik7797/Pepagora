@@ -15,6 +15,7 @@ export function Dropzone({
   maxSizeMb = UPLOAD.maxSizeMb,
   hint = UPLOAD.hint,
   label = 'Banner image',
+  variant = 'dropzone',
 }: DropzoneProps) {
   const [dragging, setDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,6 +32,63 @@ export function Dropzone({
     setError(null);
     onChange(file);
   };
+
+  const fileInput = (
+    <input
+      ref={inputRef}
+      type="file"
+      accept={accept}
+      className={s.input}
+      aria-label={label}
+      onChange={(e) => accept_(e.target.files?.[0])}
+    />
+  );
+
+  if (value && variant === 'compact') {
+    return (
+      <>
+        <div className={s.compactFilled}>
+          <div className={s.compactPreview}>
+            {/* Object URL from the picker — next/image can't optimise it. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={value} alt={label} />
+          </div>
+
+          <button
+            type="button"
+            className={s.change}
+            onClick={() => inputRef.current?.click()}
+          >
+            Change
+          </button>
+        </div>
+
+        {fileInput}
+        {error && <span className={s.error}>{error}</span>}
+      </>
+    );
+  }
+
+  if (variant === 'compact') {
+    return (
+      <>
+        <div className={s.compactEmpty}>
+          <Button
+            variant="outline"
+            size="sm"
+            pill
+            onClick={() => inputRef.current?.click()}
+          >
+            Upload file
+          </Button>
+          <span className={s.hint}>{hint}</span>
+        </div>
+
+        {fileInput}
+        {error && <span className={s.error}>{error}</span>}
+      </>
+    );
+  }
 
   if (value) {
     return (
@@ -86,14 +144,7 @@ export function Dropzone({
 
         <span className={s.hint}>{hint}</span>
 
-        <input
-          ref={inputRef}
-          type="file"
-          accept={accept}
-          className={s.input}
-          aria-label={label}
-          onChange={(e) => accept_(e.target.files?.[0])}
-        />
+        {fileInput}
       </div>
 
       {error && <span className={s.error}>{error}</span>}

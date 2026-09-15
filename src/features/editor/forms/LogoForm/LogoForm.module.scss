@@ -1,0 +1,18 @@
+.label {
+  font-size: $fs-13;
+  font-weight: $fw-semibold;
+  color: $color-text;
+  margin-bottom: $sp-8;
+}
+
+.note {
+  font-size: $fs-12;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  margin-top: $sp-8;
+}
+
+.empty {
+  font-size: $fs-13;
+  color: $color-text-muted;
+}

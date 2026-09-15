@@ -7,7 +7,7 @@ import type {
   SectionData,
   SectionType,
 } from '@/features/catalog-site/types';
-import type { EditorMode, EditorTab } from '../types';
+import type { EditorMode, EditorTab, LogoSettings } from '../types';
 
 interface EditorState {
   page: CatalogPage | null;
@@ -15,6 +15,8 @@ interface EditorState {
   activeTab: EditorTab;
   openSectionId: string | null;
   hoveredSectionId: string | null;
+  /** Site-wide logo, edited from the Logo row above the section list. */
+  logo: LogoSettings;
   /** Set once a field changes, so the save bar can reflect it. */
   dirty: boolean;
 
@@ -29,6 +31,7 @@ interface EditorState {
     id: string,
     patch: Partial<SectionData<T>>,
   ) => void;
+  updateLogo: (patch: Partial<LogoSettings>) => void;
   markSaved: () => void;
 }
 
@@ -38,6 +41,7 @@ export const useEditorStore = create<EditorState>((set) => ({
   activeTab: 'contents',
   openSectionId: null,
   hoveredSectionId: null,
+  logo: { header: null, footer: null, inverseFooter: true },
   dirty: false,
 
   loadPage: (page) =>
@@ -88,6 +92,9 @@ export const useEditorStore = create<EditorState>((set) => ({
         dirty: true,
       };
     }),
+
+  updateLogo: (patch) =>
+    set((state) => ({ logo: { ...state.logo, ...patch }, dirty: true })),
 
   markSaved: () => set({ dirty: false }),
 }));

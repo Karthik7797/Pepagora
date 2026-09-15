@@ -1,0 +1,62 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-12;
+  cursor: pointer;
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// The native input stays in the layout so it keeps focus and keyboard
+// behaviour; the styled box sits on top of it.
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid $color-border-strong;
+  border-radius: $radius-sm;
+  background: $white;
+  color: $white;
+  transition:
+    background-color $duration $ease,
+    border-color $duration $ease;
+}
+
+.tick {
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+}
+
+.input:checked + .box {
+  background: $ink-1000;
+  border-color: $ink-1000;
+
+  .tick {
+    opacity: 1;
+  }
+}
+
+.input:focus-visible + .box {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+.label {
+  font-size: $fs-14;
+  color: $color-text;
+}

@@ -15,3 +15,16 @@ export interface EditorUiState {
   /** Section hovered on the canvas, drives the blue badge. */
   hoveredSectionType: SectionType | null;
 }
+
+/**
+ * Site logo, shared by every page rather than owned by a section. The design
+ * notes that changing it also updates the business profile, so it is stored
+ * against the site rather than the page.
+ */
+export interface LogoSettings {
+  /** Object URL of the header logo, or null while none is chosen. */
+  header: string | null;
+  footer: string | null;
+  /** Derives the footer mark from the header one instead of uploading it. */
+  inverseFooter: boolean;
+}
