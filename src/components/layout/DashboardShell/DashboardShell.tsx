@@ -17,18 +17,26 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
   // The design trims the rail on the catalog overview and shows the full
   // navigation once the editor is open.
-  const railVariant = pathname.includes('/editor') ? 'full' : 'compact';
+  const inEditor = pathname.includes('/editor');
+  const railVariant = inEditor ? 'full' : 'compact';
 
+  // On phones the editor takes the whole screen: its own toolbar carries the
+  // back arrow and Publish, so the marketplace bar and rail would only steal
+  // height. Both stay put from tablet up.
   return (
-    <div className={s.shell}>
-      <MarketplaceHeader />
+    <div className={s.shell} data-editor={inEditor || undefined}>
+      <div className={s.chrome}>
+        <MarketplaceHeader />
+      </div>
 
       <div className={s.body}>
-        <IconRail
-          variant={railVariant}
-          open={menuOpen}
-          onClose={() => setMenuOpen(false)}
-        />
+        <div className={s.chrome}>
+          <IconRail
+            variant={railVariant}
+            open={menuOpen}
+            onClose={() => setMenuOpen(false)}
+          />
+        </div>
         <main className={s.main}>{children}</main>
       </div>
 

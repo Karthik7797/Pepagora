@@ -15,9 +15,27 @@
   min-width: 0;
 }
 
+// Phone-sized editor: the toolbar is the only chrome, so the marketplace bar
+// and rail come out and the sticky offsets they created collapse with them.
+@include down('md') {
+  .shell[data-editor] {
+    --header-h: 0px;
+
+    .chrome {
+      display: none;
+    }
+  }
+}
+
 // Doubled to clear the .menuTrigger.menuTrigger specificity below.
 :global(body[data-preview]) .menuTrigger.menuTrigger.menuTrigger {
   display: none;
+}
+
+.shell[data-editor] .menuTrigger.menuTrigger {
+  @include down('md') {
+    display: none;
+  }
 }
 
 .menuTrigger.menuTrigger {

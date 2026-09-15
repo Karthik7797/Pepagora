@@ -1,0 +1,32 @@
+// Wraps the preview so it stays the first grid child of the page layout.
+.root {
+  min-width: 0;
+}
+
+.tabs {
+  margin-bottom: $sp-16;
+
+  // Desktop shows the preview and sidebar together — no switching needed.
+  @include up('lg') {
+    display: none;
+  }
+}
+
+.templatePanel {
+  @include down('lg') {
+    &[data-active='false'] {
+      display: none;
+    }
+  }
+}
+
+.analyticsPanel {
+  // Analytics is a mobile-only surface; desktop keeps its sidebar cards.
+  @include up('lg') {
+    display: none;
+  }
+
+  &[data-active='false'] {
+    display: none;
+  }
+}

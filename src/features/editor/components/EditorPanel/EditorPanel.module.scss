@@ -30,6 +30,14 @@
       transform: translateX(0);
     }
   }
+
+  // On phones it is the whole screen rather than a drawer, so the form has
+  // room for its media boxes and the Cancel/Save footer sits on the edge.
+  @include down('md') {
+    width: 100%;
+    border-left: 0;
+    box-shadow: none;
+  }
 }
 
 .body {
@@ -45,6 +53,10 @@
   padding: $sp-16 $sp-20;
   border-top: 1px solid $color-border;
   background: $white;
+
+  @include down('md') {
+    padding-bottom: calc(#{$sp-16} + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .toggle {

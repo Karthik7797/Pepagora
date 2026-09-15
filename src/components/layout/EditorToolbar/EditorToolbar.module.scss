@@ -1,9 +1,13 @@
 // Sticks directly under the marketplace header so the editor controls stay
 // reachable while the canvas scrolls; the panel pins to the combined height.
-.toolbar {
+.bar {
   position: sticky;
   top: var(--header-h);
   z-index: $z-sticky;
+  background: $white;
+}
+
+.toolbar {
   display: flex;
   align-items: center;
   gap: $sp-16;
@@ -12,8 +16,19 @@
   background: $white;
   border-bottom: 1px solid $color-border;
 
+  // Phones show icons only, so the row can breathe.
+  @include down('md') {
+    gap: $sp-8;
+  }
+
   @include up('xl') {
     padding-inline: $sp-20;
+  }
+}
+
+.exitLabel {
+  @include down('md') {
+    @include visually-hidden;
   }
 }
 
@@ -51,6 +66,21 @@
   @include down('md') {
     display: none;
   }
+}
+
+// Full-width page picker below the icon row — phones only.
+.pageRow {
+  display: none;
+
+  @include down('md') {
+    display: block;
+    padding: $sp-8 $sp-16 $sp-12;
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.pageRowSelect {
+  width: 100%;
 }
 
 .selectControl {
@@ -99,6 +129,12 @@
   }
 
   @include down('md') {
+    // Keeps a 44px target even though the glyph stays 17px.
+    width: 44px;
+    height: 44px;
+    padding-inline: 0;
+    justify-content: center;
+
     span {
       @include visually-hidden;
     }

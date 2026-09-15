@@ -18,6 +18,7 @@ export type IconName =
   | 'filter'
   | 'pencil'
   | 'play'
+  | 'eye'
   | 'settings'
   | 'panel'
   | 'upload'

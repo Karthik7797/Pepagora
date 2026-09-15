@@ -1,6 +1,11 @@
 .wrapper {
   padding: $sp-20 $sp-16 $sp-32;
 
+  // Clears the fixed action bar so the last card is never trapped under it.
+  @include down('lg') {
+    padding-bottom: calc(#{$sp-32} + 64px);
+  }
+
   @include up('xl') {
     padding: $sp-24 $sp-24 $sp-40;
   }
@@ -23,6 +28,52 @@
 .actions {
   display: flex;
   gap: $sp-12;
+
+  @include down('lg') {
+    display: none;
+  }
+}
+
+.siteUrl {
+  margin-bottom: $sp-16;
+  padding: $sp-12 $sp-16;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  background: $white;
+  font-size: $fs-13;
+  color: $color-text-muted;
+
+  @include up('lg') {
+    display: none;
+  }
+}
+
+// The slug is the part the user chose, so it carries the emphasis.
+.siteSlug {
+  color: $color-text;
+  text-decoration: underline;
+}
+
+.bottomBar {
+  display: none;
+
+  @include down('lg') {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $sp-12;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $z-sticky;
+    padding: $sp-12 $sp-16 calc(#{$sp-12} + env(safe-area-inset-bottom, 0px));
+    background: $white;
+    border-top: 1px solid $color-border;
+  }
+}
+
+.bottomBarLink {
+  display: block;
 }
 
 .layout {
@@ -50,6 +101,10 @@
   display: flex;
   flex-direction: column;
   gap: $sp-16;
+
+  @include down('lg') {
+    display: none;
+  }
 
   @include up('lg') {
     position: sticky;

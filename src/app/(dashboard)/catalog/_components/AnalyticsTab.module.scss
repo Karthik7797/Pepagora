@@ -1,0 +1,113 @@
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-16;
+}
+
+.card {
+  padding: $sp-20;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background: $white;
+}
+
+.allSetTitle {
+  font-size: $fs-15;
+  font-weight: $fw-semibold;
+  text-align: center;
+  margin-bottom: $sp-8;
+}
+
+.allSetBody {
+  font-size: $fs-13;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+.rule {
+  height: 1px;
+  border: 0;
+  background: $color-border;
+  margin-block: $sp-20;
+}
+
+.cardHeading {
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+  font-size: $fs-15;
+  font-weight: $fw-semibold;
+  margin-bottom: $sp-16;
+}
+
+.headingIcon {
+  flex-shrink: 0;
+  color: $color-text-muted;
+}
+
+.fieldLabel {
+  font-size: $fs-13;
+  color: $color-text-muted;
+  margin-bottom: $sp-8;
+}
+
+.views {
+  display: flex;
+  align-items: center;
+  gap: $sp-8;
+  font-size: $fs-24;
+  font-weight: $fw-medium;
+  color: $ink-1000;
+}
+
+.viewsIcon {
+  flex-shrink: 0;
+  color: $color-text;
+}
+
+// Last Edited / Last Edited By sit side by side, as the design shows.
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-16;
+  margin-bottom: $sp-20;
+}
+
+.fieldValue {
+  font-size: $fs-14;
+  color: $ink-1000;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding-inline: $sp-12;
+  border-radius: $radius-pill;
+  font-size: $fs-12;
+  color: $green-600;
+  background: $green-100;
+}
+
+.planName {
+  font-size: $fs-14;
+  font-weight: $fw-semibold;
+  margin-bottom: $sp-4;
+}
+
+.planMeta {
+  font-size: $fs-13;
+  color: $color-text-muted;
+  margin-bottom: $sp-16;
+}
+
+.planTerm {
+  margin-left: $sp-8;
+}
+
+.planActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $sp-12;
+}

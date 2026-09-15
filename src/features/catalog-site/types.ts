@@ -179,6 +179,17 @@ export interface Catalog {
   id: string;
   name: string;
   companyName: string;
+  /** Public address shown above the Template/Analytics tabs on mobile. */
+  siteUrl: string;
   pages: CatalogPage[];
-  plan: { name: string; price: string; nextBilling: string };
+  plan: { name: string; price: string; term: string; nextBilling: string };
+  analytics: CatalogAnalytics;
+}
+
+/** Figures behind the mobile Analytics tab. Mocked until the API lands. */
+export interface CatalogAnalytics {
+  views: number;
+  lastEdited: string;
+  lastEditedBy: string;
+  status: 'Active' | 'Inactive';
 }
