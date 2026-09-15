@@ -18,6 +18,20 @@ const PAGE_OPTIONS = CATALOG_PAGES.map((page) => ({
   label: page.name,
 }));
 
+// The mode glyphs come from the Figma export as monochrome PNGs, so they are
+// masked to currentColor to follow the pill's active/inverted states.
+function ModeIcon({ file }: { file: string }) {
+  const url = `url(/Home/vuesax/linear/${file}.png)`;
+
+  return (
+    <span
+      className={s.modeIcon}
+      style={{ maskImage: url, WebkitMaskImage: url }}
+      aria-hidden="true"
+    />
+  );
+}
+
 export function EditorToolbar({ pageId }: Props) {
   const router = useRouter();
   const mode = useEditorStore((state) => state.mode);
@@ -53,12 +67,12 @@ export function EditorToolbar({ pageId }: Props) {
           aria-pressed={!previewing}
           onClick={() => setMode('editor')}
         >
-          <Icon name="panel" size={17} className={s.modeIcon} />
+          <ModeIcon file="sidebar-right" />
           <span>Editor</span>
         </button>
 
         <button type="button" className={s.mode}>
-          <Icon name="settings" size={17} className={s.modeIcon} />
+          <ModeIcon file="setting-2" />
           <span>Settings</span>
         </button>
 
@@ -68,7 +82,7 @@ export function EditorToolbar({ pageId }: Props) {
           aria-pressed={previewing}
           onClick={() => setMode(previewing ? 'editor' : 'preview')}
         >
-          <Icon name="play" size={17} className={s.modeIcon} />
+          <ModeIcon file="play" />
           <span>{previewing ? 'Exit preview' : 'Preview'}</span>
         </button>
 
