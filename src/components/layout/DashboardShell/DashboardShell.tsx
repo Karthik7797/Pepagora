@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { IconButton } from '@/components/ui';
+import { useMediaQuery } from '@/hooks';
 import { IconRail } from '../IconRail';
 import { MarketplaceHeader } from '../MarketplaceHeader';
 import s from './DashboardShell.module.scss';
@@ -22,21 +23,26 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
   // On phones the editor takes the whole screen: its own toolbar carries the
   // back arrow and Publish, so the marketplace bar and rail would only steal
-  // height. Both stay put from tablet up.
+  // height. Both stay put from tablet up. This is a JS check rather than CSS
+  // because hiding them with a wrapper would break the header's sticky
+  // positioning on every other screen.
+  const isPhone = useMediaQuery('(max-width: 767.98px)');
+  const hideChrome = inEditor && isPhone;
+
   return (
     <div className={s.shell} data-editor={inEditor || undefined}>
-      <div className={s.chrome}>
-        <MarketplaceHeader />
-      </div>
+      {/* A wrapper here would become the header's containing block and
+          break its sticky positioning, so it is rendered unwrapped. */}
+      {!hideChrome && <MarketplaceHeader />}
 
       <div className={s.body}>
-        <div className={s.chrome}>
+        {!hideChrome && (
           <IconRail
             variant={railVariant}
             open={menuOpen}
             onClose={() => setMenuOpen(false)}
           />
-        </div>
+        )}
         <main className={s.main}>{children}</main>
       </div>
 

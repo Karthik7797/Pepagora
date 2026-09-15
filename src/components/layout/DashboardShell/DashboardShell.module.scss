@@ -15,15 +15,11 @@
   min-width: 0;
 }
 
-// Phone-sized editor: the toolbar is the only chrome, so the marketplace bar
-// and rail come out and the sticky offsets they created collapse with them.
+// Phone-sized editor: the header and rail are not rendered at all (see the
+// component), so the offset they reserved collapses with them.
 @include down('md') {
   .shell[data-editor] {
     --header-h: 0px;
-
-    .chrome {
-      display: none;
-    }
   }
 }
 

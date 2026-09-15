@@ -96,21 +96,6 @@
   @include up('lg') {
     gap: $sp-8;
   }
-
-  // The design centres the icon trio in the bar and pins Publish to the
-  // right, so the group spans the row rather than hugging the end.
-  @include down('md') {
-    flex: 1;
-    justify-content: center;
-    gap: $sp-4;
-  }
-}
-
-// Publish sits hard right, outside the centred trio.
-.publish {
-  @include down('md') {
-    margin-left: auto;
-  }
 }
 
 .mode {

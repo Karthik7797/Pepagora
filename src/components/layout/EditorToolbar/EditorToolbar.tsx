@@ -87,7 +87,7 @@ export function EditorToolbar({ pageId }: Props) {
             <span>{previewing ? 'Exit preview' : 'Preview'}</span>
           </button>
 
-          <Button variant="primary" size="sm" pill className={s.publish}>
+          <Button variant="primary" size="sm" pill>
             Publish
           </Button>
         </div>
