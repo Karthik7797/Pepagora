@@ -20,6 +20,16 @@
   justify-content: space-between;
   gap: $sp-16;
   margin-bottom: $sp-20;
+
+  // The title sits on its own white band spanning the full width, so it
+  // breaks out of the wrapper's side padding.
+  @include down('lg') {
+    margin-inline: -#{$sp-16};
+    margin-top: -#{$sp-20};
+    margin-bottom: $sp-16;
+    padding: $sp-20 $sp-16;
+    background: $white;
+  }
 }
 
 .title {
