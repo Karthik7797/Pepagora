@@ -10,6 +10,34 @@
   @include up('lg') {
     display: none;
   }
+
+  // The catalog switch is taller and fully rounded, unlike the compact
+  // segmented control the editor forms use.
+  > * {
+    height: 48px;
+    padding: $sp-4;
+    border: 0;
+    border-radius: $radius-pill;
+    background: $grey-200;
+
+    button {
+      height: 100%;
+      border-radius: $radius-pill;
+      font-size: $fs-14;
+      background: transparent;
+
+      // The divider belongs to the boxed variant, not this one.
+      & + button {
+        border-left: 0;
+      }
+
+      &[aria-selected='true'] {
+        background: $white;
+        font-weight: $fw-semibold;
+        box-shadow: $shadow-sm;
+      }
+    }
+  }
 }
 
 .templatePanel {

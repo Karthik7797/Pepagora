@@ -3,7 +3,9 @@
 
   // Clears the fixed action bar so the last card is never trapped under it.
   @include down('lg') {
+    min-height: 100%;
     padding-bottom: calc(#{$sp-32} + 64px);
+    background: $color-app-bg;
   }
 
   @include up('xl') {
@@ -23,6 +25,11 @@
 .title {
   font-size: $fs-18;
   font-weight: $fw-semibold;
+
+  @include down('lg') {
+    font-size: $fs-20;
+    letter-spacing: -0.01em;
+  }
 }
 
 .actions {
@@ -36,22 +43,24 @@
 
 .siteUrl {
   margin-bottom: $sp-16;
-  padding: $sp-12 $sp-16;
+  padding: $sp-12 $sp-20;
   border: 1px solid $color-border;
-  border-radius: $radius-md;
+  border-radius: $radius-pill;
   background: $white;
   font-size: $fs-13;
   color: $color-text-muted;
+  // The address is one unbroken string in the design — no emphasis split.
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   @include up('lg') {
     display: none;
   }
 }
 
-// The slug is the part the user chose, so it carries the emphasis.
 .siteSlug {
-  color: $color-text;
-  text-decoration: underline;
+  color: inherit;
 }
 
 .bottomBar {
