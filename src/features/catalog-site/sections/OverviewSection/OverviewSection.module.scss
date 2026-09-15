@@ -27,19 +27,20 @@
 }
 
 .title {
-  font-size: clamp(#{$fs-20}, 1.95cqw, 25px);
+  font-size: clamp(#{$fs-20}, 2.15cqw, 28px);
   font-weight: $fw-bold;
   letter-spacing: -0.03em;
-  line-height: 1.12;
-  max-width: 16ch;
+  line-height: 1.22;
+  // Breaks after "Reliable" as the design does, rather than after "to".
+  max-width: 22ch;
   margin-bottom: $sp-20;
 }
 
 .body {
-  font-size: $fs-14;
+  font-size: clamp(#{$fs-13}, 1.02cqw, #{$fs-14});
   line-height: $lh-relaxed;
-  color: $color-text-muted;
-  max-width: 68ch;
+  color: $grey-700;
+  max-width: 78ch;
   margin-bottom: $sp-24;
 }
 
